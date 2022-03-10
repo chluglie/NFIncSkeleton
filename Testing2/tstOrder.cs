@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Testing2
+namespace TestingOrder
 {
     [TestClass]
     public class tstOrder
@@ -24,9 +24,9 @@ namespace Testing2
             //create some test data to assign to the order
             Boolean OrderConfirmed = true;
             //assign the data to the order
-            AnOrder.Active = TestData;
+            AnOrder.Active = OrderConfirmed;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.Active, TestData);
+            Assert.AreEqual(AnOrder.Active, OrderConfirmed);
         }
     }
 }
