@@ -6,11 +6,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
  * For reference:
  * blOrderItem
 	OrderID	 *		Int		Primary Key
-	CustomerID		Int
-	ItemName		Text
+	CustomerID		Int x
+	ItemName		Text x
 	Date			Date x
-	Quantity		Int
-	Price			Decima
+	Quantity		Int x
+	Price			Double x
 	OrderConfirmed	Boolean	x
  * @author CR
  */
@@ -79,6 +79,44 @@ namespace TestingOrder
             AnOrder.Price = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AnOrder.Price, TestData);
+        }
+
+        [TestMethod]
+        public void ItemNameOK()
+        {
+            //creates and instance of the class i want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            string TestData = "Clipper";
+            //assign the data to the property
+            AnOrder.Name = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.Name, TestData);
+        }
+
+        [TestMethod]
+        public void CustomerIdOK()
+        {
+            //creates and instance of the class i want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            int TestData = 1;
+            //assign the data to the property
+            AnOrder.CustomerId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.CustomerId, TestData);
+        }
+
+        public void OrderIdOK()
+        {
+            //creates and instance of the class i want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            int TestData = 1;
+            //assign the data to the property
+            AnOrder.OrderId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.OrderId, TestData);
         }
 
 
