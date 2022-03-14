@@ -11,22 +11,22 @@
     <form id="OrderId" runat="server">
         <div>
         </div>
-        <asp:Label ID="lblOrderId" runat="server" Text="Order ID" width="109px"></asp:Label>
+        <asp:Label ID="lblOrderId" runat="server" Text="Order ID" width="222px"></asp:Label>
         <asp:TextBox ID="txtOrderId" runat="server"></asp:TextBox>
         <p>
-            <asp:Label ID="lblDate" runat="server" Text="Order Date" width="109px"></asp:Label>
+            <asp:Label ID="lblDate" runat="server" Text="Order Date" width="222px"></asp:Label>
             <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
         </p>
-        <asp:Label ID="lblQuantity" runat="server" Text="Order Quantity" width="109px"></asp:Label>
+        <asp:Label ID="lblQuantity" runat="server" Text="Order Quantity" width="222px"></asp:Label>
         <asp:TextBox ID="txtQuantity" runat="server"></asp:TextBox>
         <p>
-            <asp:Label ID="lblPrice" runat="server" Text="Order Price" width="109px"></asp:Label>
+            <asp:Label ID="lblPrice" runat="server" Text="Order Price" width="222px"></asp:Label>
             <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
         </p>
         <asp:Label ID="lblItemName" runat="server" Text="Order Item Name"></asp:Label>
         <asp:TextBox ID="txtItemName" runat="server"></asp:TextBox>
         <p>
-            <asp:Label ID="lblCustomerId" runat="server" Text="Customer ID" width="109px"></asp:Label>
+            <asp:Label ID="lblCustomerId" runat="server" Text="Customer ID" width="222px"></asp:Label>
             <asp:TextBox ID="txtCustomerId" runat="server"></asp:TextBox>
         </p>
         <asp:CheckBox ID="chkActive" runat="server" Text="Order Active" />
