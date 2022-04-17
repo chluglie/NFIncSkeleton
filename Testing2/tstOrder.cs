@@ -1,6 +1,7 @@
 ﻿using System;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework.Internal;
 
 /*
  * For reference:
@@ -107,7 +108,8 @@ namespace TestingOrder
             Assert.AreEqual(AnOrder.CustomerId, TestData);
         }
 
-        public void OrderIdOK()
+        [TestMethod]
+        public void OrderIdOK() 
         {
             //creates and instance of the class i want to create
             clsOrder AnOrder = new clsOrder();
@@ -117,6 +119,44 @@ namespace TestingOrder
             AnOrder.OrderId = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AnOrder.OrderId, TestData);
+        }
+
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            //create an instance of the class i want to create
+            clsOrder AnOrder = new clsOrder();
+            //Boolean variable to store the resulats of validation
+            Boolean Found = false;
+            //Create some test data to use with the method
+            Int32 OrderId = 5;
+            //Invoke the method
+            Found = AnOrder.Find(OrderId);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestAnOrderNoFound() //This test finds the a record
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 OrderId = 5;
+            //invoke the method
+            Found = AnOrder.Find(OrderId);
+            //check the quantity no
+            if (AnOrder.OrderId != 5)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+
         }
 
 
