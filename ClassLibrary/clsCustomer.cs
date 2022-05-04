@@ -2,14 +2,13 @@
 
 namespace ClassLibrary
 {
-    public class clsOrder
+    public class clsCustomer
     {
-        public int CustomerId { get; set; }
-        public string CustomerName { get; set; }
         public bool CustomerStatus { get; set; }
-        public DateTime CustomerDOB { get; set; }
+        public DateTime DOB { get; set; }
+        public string Name { get; set; }
         public string CustomerAddress { get; set; }
-        public int CustomerMobileNumber { get; set; }
+        public long CustomerMobileNumber { get; set; }
+        public string CustomerID { get; set; }
     }
 }
-
