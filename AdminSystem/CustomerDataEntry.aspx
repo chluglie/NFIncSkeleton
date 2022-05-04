@@ -10,6 +10,31 @@
     This is the customer data entry page
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="IbICustomerNamr" runat="server" Text="Customer Name" width="160px"></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" width="160px"></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblCustomerDOB" runat="server" Text="Customer DOB" width="160px"></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblCustomerMobileNumber" runat="server" Text="Customer Mobile Number"></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblCustomerAddress" runat="server" Text="Customer Address" width="160px"></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:CheckBox ID="chkStatus" runat="server" Text=" STATUS" />
+            <br />
+            <br />
+            <asp:Label ID="lblError" runat="server"></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
         </div>
     </form>
 </body>
