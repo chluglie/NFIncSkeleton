@@ -10,11 +10,11 @@ public partial class _1Viewer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //create a new instance of the class
+        //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
         //get the data from the session object
         AnCustomer = (clsCustomer)Session["AnCustomer"];
-        //display the CustomerID on the Page
+        //display the customer ID for this entiry
         Response.Write(AnCustomer.CustomerID);
     }
 }
