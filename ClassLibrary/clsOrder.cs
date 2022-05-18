@@ -111,7 +111,19 @@ namespace ClassLibrary
             }
         }
 
+        public bool Find(int OrderId)
+        {
+            mOrderId = 5;
+            mCustomerId = 20;
+            mItemName = Convert.ToString("Clipper");
+            mDateAdded = Convert.ToDateTime("16/04/2022");
+            mQuantity = 12;
+            mPrice = 3.95;
+            mActive = true;
+            return true;
+        }
 
+        /*
         public bool Find(int OrderId)
         {
             clsDataConnection DB = new clsDataConnection();
@@ -138,7 +150,7 @@ namespace ClassLibrary
             }
         }
 
-
+        */
 
     }
 }
