@@ -13,99 +13,16 @@ namespace TestingStock
     [TestClass]
     public class tstStock
     {
-        
-
-        [TestMethod]
-        public void testStockavailabilityFound()
-        {
-            //creates instance of class Stock
-            clsStock AStock = new clsStock(); 
-            Boolean Found = false;
-            Boolean Ok = true;
-            int ProductID = 15;
-            Found = AStock.find(ProductID);
-            if (AStock.ProductAvailability != true)
-            {
-                Ok = false;
-            }
-            //shows if the classs is present
-            Assert.IsTrue(Ok);
-        }
-        [TestMethod]
-        public void testStockDescFound()
-        {
-            //creates instance of class Stock
-            clsStock AStock = new clsStock();
-            Boolean Found = false;
-            Boolean Ok = true;
-            int ProductID = 15;
-            Found = AStock.find(ProductID);
-            if (AStock.ProductDesc != "Blue Clipper")
-            {
-                Ok = false;
-            }
-            //shows if the classs is present
-            Assert.IsTrue(Ok);
-        }
-        [TestMethod]
-        public void testStockRestockSchedFound()
-        {
-            //creates instance of class Stock
-            clsStock AStock = new clsStock();
-            Boolean Found = false;
-            Boolean Ok = true;
-            int ProductID = 15;
-            Found = AStock.find(ProductID);
-            if (AStock.ProductRestockSched != Convert.ToDateTime("22/12/2222"))
-            {
-                Ok = false;
-            }
-            //shows if the classs is present
-            Assert.IsTrue(Ok);
-        }
-        [TestMethod]
-        public void testStockProductSupplierFound()
-        {
-            //creates instance of class Stock
-            clsStock AStock = new clsStock();
-            Boolean Found = false;
-            Boolean Ok = true;
-            int ProductID = 15;
-            Found = AStock.find(ProductID);
-            if (AStock.ProductSupplier != "Clipper Co.")
-            {
-                Ok = false;
-            }
-            //shows if the classs is present
-            Assert.IsTrue(Ok);
-        }
-        [TestMethod]
-        public void testStockProductIDFound()
-        {
-            //creates instance of class Stock
-            clsStock AStock = new clsStock();
-            Boolean Found = false;
-            Boolean Ok = true;
-            int ProductID = 15;
-            Found = AStock.find(ProductID);
-            if (AStock.ProductID != 15)
-            {
-                Ok = false;
-            }
-            //shows if the classs is present
-            Assert.IsTrue(Ok);
-        }
-
         [TestMethod]
         public void FindMethodOk()
         {
             //creates instance of class Stock
             clsStock AStock = new clsStock();
             Boolean Found = false;
-            int ProductID = 15;
+            int32 ProductID = 4;
             Found = AStock.find(ProductID);
-            //shows if the class is present
-            Assert.IsTrue(Found);
+            //shows if the classs is present
+            Assert.IsTrue(AStock);
         }
         
 
