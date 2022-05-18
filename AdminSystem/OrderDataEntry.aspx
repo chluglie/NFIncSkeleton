@@ -9,10 +9,9 @@
 <body>
     This is the order data entry page.
     <form id="OrderId" runat="server">
-        <div>
-        </div>
         <asp:Label ID="lblOrderId" runat="server" Text="Order ID" width="222px"></asp:Label>
         <asp:TextBox ID="txtOrderId" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         <p>
             <asp:Label ID="lblDate" runat="server" Text="Order Date" width="222px"></asp:Label>
             <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
@@ -23,7 +22,7 @@
             <asp:Label ID="lblPrice" runat="server" Text="Order Price" width="222px"></asp:Label>
             <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
         </p>
-        <asp:Label ID="lblItemName" runat="server" Text="Order Item Name"></asp:Label>
+        <asp:Label ID="lblItemName" runat="server" Text="Order Item Name"  width="222px"></asp:Label>
         <asp:TextBox ID="txtItemName" runat="server"></asp:TextBox>
         <p>
             <asp:Label ID="lblCustomerId" runat="server" Text="Customer ID" width="222px"></asp:Label>
@@ -34,7 +33,7 @@
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
     </form>
 </body>
 </html>

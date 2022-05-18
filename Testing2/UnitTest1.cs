@@ -1,20 +1,6 @@
-﻿using System;
-using ClassLibrary;
+﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework.Internal;
-
-/*
- * For reference:
- * blOrderItem
-	OrderID	 *		Int		Primary Key
-	CustomerID		Int x
-	ItemName		Text x
-	Date			Date x
-	Quantity		Int x
-	Price			Double x
-	OrderConfirmed	Boolean	x
- * @author CR
- */
+using System;
 
 namespace TestingOrder
 {
@@ -49,11 +35,11 @@ namespace TestingOrder
             //creates and instance of the class i want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
-            DateTime TestData  = DateTime.Now.Date;
+            DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            AnOrder.Date = TestData;
+            AnOrder.DateAdded = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.Date, TestData);
+            Assert.AreEqual(AnOrder.DateAdded, TestData);
         }
 
         [TestMethod]
@@ -90,9 +76,9 @@ namespace TestingOrder
             //create some test data to assign to the property
             string TestData = "Clipper";
             //assign the data to the property
-            AnOrder.Name = TestData;
+            AnOrder.ItemName = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.Name, TestData);
+            Assert.AreEqual(AnOrder.ItemName, TestData);
         }
 
         [TestMethod]
@@ -109,7 +95,7 @@ namespace TestingOrder
         }
 
         [TestMethod]
-        public void OrderIdOK() 
+        public void OrderIdOK()
         {
             //creates and instance of the class i want to create
             clsOrder AnOrder = new clsOrder();
