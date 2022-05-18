@@ -188,7 +188,7 @@ namespace Testing3
             //invoke the method
             Found = AnCustomer.Find(CustomerID);
             //check the customer name
-            if (AnCustomer.CustomerName != "Test CustomerName" )
+            if (AnCustomer.CustomerName != "Test CustomerName")
             {
                 OK = false;
             }
@@ -244,6 +244,6 @@ namespace Testing3
 
 
 
-        
+
     }
 }
