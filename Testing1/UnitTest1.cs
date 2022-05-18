@@ -14,6 +14,19 @@ namespace TestingStock
     public class tstStock
     {
         [TestMethod]
+        public void FindMethodOk()
+        {
+            //creates instance of class Stock
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            int32 ProductID = 4;
+            Found = AStock.find(ProductID);
+            //shows if the classs is present
+            Assert.IsTrue(AStock);
+        }
+        
+
+        [TestMethod]
         public void InstanceOK()
         {
             //creates instance of class Stock
