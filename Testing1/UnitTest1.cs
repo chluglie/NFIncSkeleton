@@ -40,7 +40,7 @@ namespace TestingStock
             Boolean Ok = true;
             int ProductID = 15;
             Found = AStock.find(ProductID);
-            if (AStock.ProductDesc != "Blue Clipper")
+            if (AStock.ProductDesc != "Googly-Eyed Classic Clipper")
             {
                 Ok = false;
             }
@@ -56,7 +56,7 @@ namespace TestingStock
             Boolean Ok = true;
             int ProductID = 15;
             Found = AStock.find(ProductID);
-            if (AStock.ProductRestockSched != Convert.ToDateTime("22/12/2222"))
+            if (AStock.ProductRestockSched != Convert.ToDateTime("11/11/1111"))
             {
                 Ok = false;
             }
@@ -72,7 +72,7 @@ namespace TestingStock
             Boolean Ok = true;
             int ProductID = 15;
             Found = AStock.find(ProductID);
-            if (AStock.ProductSupplier != "Clipper Co.")
+            if (AStock.ProductSupplier != "FlameGuys")
             {
                 Ok = false;
             }

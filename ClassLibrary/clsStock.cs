@@ -63,13 +63,23 @@ namespace ClassLibrary
 
         public bool find(int ProductID)
         {
-            mProductID = 15;
-            mProductAvailability = true;
-            mProductSupplier = "Clipper Co.";
-            mProductDesc = "Blue Clipper";
-            mProductRestockSched = Convert.ToDateTime("22/12/2222");
-            return true;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ProductID", ProductID);
+            DB.Execture("sproc_ProductTable_FilerByProductID");
+            if (DB.Count == 1)
+            {
+                mProductID = Convert.ToInt32(DB.ProductTable.Rows[0]["ProductID"]);
+                mProductAvailability = Convert.ToBoolean(DB.ProductTable.Rows[0]["ProductAvailability"]);
+                mProductSupplier = Convert.ToString(DB.ProductTable.Rows[0]["ProductSupplier"]);
+                mProductDesc = Convert.ToString(DB.ProductTable.Rows[0]["ProductName"]);
+                mProductRestockSched = Convert.ToDateTime(DB.ProductTable.Rows[0]["ProductRestockSched"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         
-    } 
+    }
 }
