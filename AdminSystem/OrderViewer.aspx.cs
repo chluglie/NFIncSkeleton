@@ -15,6 +15,6 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         AnOrder = (clsOrder)Session["AnOrder"];
         //display the item name for this order entry
-        Response.Write(AnOrder.Name);
+        Response.Write(AnOrder.ItemName);
     }
 }
