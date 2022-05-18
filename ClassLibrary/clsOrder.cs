@@ -116,7 +116,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@OrderId", OrderId);
-            DB.Execute(""sproc_tblOrders_FilterByOrderNo");
+            DB.Execute("sproc_tblOrders_FilterByOrderNo");
             //Due to late completion I was unable to access the database but have added the implementatiopn -
             //the procedure for the table needs creating to work correctly.
             //set the private data members to the test data value

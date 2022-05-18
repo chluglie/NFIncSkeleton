@@ -8,9 +8,32 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        OrderId = Convert.ToInt32(Session["OrderId"]);
+        if (IsPostBack == false)
+        {
+            if (OrderId != -1)
+            {
+                DisplayOrders();
+            }
+        }
+    }
 
+    private void DisplayOrders()
+    {
+        clsOrderCollection OrderBook = new clsOrderCollection();
+
+        OrderBook.ThisOrder.Find(OrderId);
+
+        txtOrderId.Text = OrderBook.ThisOrder.OrderId.ToString();
+        txtItemName.Text = OrderBook.ThisOrder.ItemName;
+        txtPrice.Text = OrderBook.ThisOrder.Price.ToString();
+        txtQuantity.Text = OrderBook.ThisOrder.Quantity.ToString();
+        txtDate.Text = OrderBook.ThisOrder.DateAdded.ToString();
+        txtCustomerId.Text = OrderBook.ThisOrder.CustomerId.ToString();
+        chkActive.Checked = OrderBook.ThisOrder.Active;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -18,10 +41,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the item name
-        AnOrder.Name = txtItemName.Text;
+        AnOrder.ItemName = txtItemName.Text;
         //store the item name in the session object
         Session["AnOrder"] = AnOrder;
         //navigate to the viewver page
         Response.Redirect("OrderViewer.aspx");
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the staff class
+        clsOrder AnOrder = new clsOrder();
+        Int32 OrderId;
+        Boolean Found = false;
+        OrderId = Convert.ToInt32(txtOrderId.Text);
+        Found = AnOrder.Find(OrderId);
+        if (Found == true)
+        {
+            txtItemName.Text = AnOrder.ItemName;
+            txtPrice.Text = AnOrder.Price.ToString();
+            txtQuantity.Text = AnOrder.Quantity.ToString();
+            txtDate.Text = AnOrder.DateAdded.ToString();
+            txtCustomerId.Text = AnOrder.CustomerId.ToString();
+            chkActive.Checked = AnOrder.Active;
+        }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
     }
 }
