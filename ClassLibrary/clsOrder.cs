@@ -160,14 +160,21 @@ namespace ClassLibrary
             }
 
             //date
-            DateTemp = Convert.ToDateTime(dateAdded);
-            if (DateTemp < DateTime.Now.Date)
+            try
             {
-                Error = Error + "The date cannot be in the past : ";
-            }
-            if (DateTemp > DateTime.Now.Date)
+                DateTemp = Convert.ToDateTime(dateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            } 
+            catch
             {
-                Error = Error + "The date cannot be in the future : ";
+                Error = Error + "The date entered is invalid: ";
             }
 
 

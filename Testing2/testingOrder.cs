@@ -494,6 +494,16 @@ namespace TestingOrder
             Assert.AreNotEqual(Error, "");
         }  
 
+        [TestMethod]
+        public void DateAddedInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string DateAdded = "This is not a date!";
+            Error = AnOrder.Valid(ItemName, DateAdded, Quantity, Price, CustomerId);
+            Assert.AreNotEqual(Error, "");
+        }
+
 
         //Tests for Quantity
         [TestMethod]
