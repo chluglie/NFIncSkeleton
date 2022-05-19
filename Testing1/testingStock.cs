@@ -1,7 +1,4 @@
-﻿using ClassLibrary;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-// table for reference
+﻿// table for reference
 // [ProductId]           INT          IDENTITY (1, 1) NOT NULL,
 // [ProductDesc]         VARCHAR(50) NULL,
 //  [ProductSupplier]     VARCHAR(10)   NULL,
@@ -24,7 +21,7 @@ namespace TestingStock
             //shows if the classs is present
             Assert.IsTrue(AStock);
         }
-        
+
 
         [TestMethod]
         public void InstanceOK()
@@ -57,7 +54,7 @@ namespace TestingStock
             string TestData = "Information On Product may go up to 50 Characters";
             AStock.ProductDesc = TestData;
             Assert.AreEqual(AStock.ProductDesc, TestData);
-            
+
         }
         [TestMethod]
 

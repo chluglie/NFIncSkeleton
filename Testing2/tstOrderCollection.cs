@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ClassLibrary;
+using System;
 using System.Collections.Generic;
 
 namespace TestingOrderCollection
@@ -36,8 +36,8 @@ namespace TestingOrderCollection
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.OrderList, TestList);
         }
-        
-        
+
+
         [TestMethod]
         public void CountOrderOK()  //This test is made redundant by the updated version of clsOrderCollection, inside clsOrderCollection.cs
         {                           //When linked to the database this test should be removed as it will fail.
@@ -91,6 +91,32 @@ namespace TestingOrderCollection
         {                               //When linked to the database this test should be removed as it will fail.
             clsOrderCollection AllOrders = new clsOrderCollection();
             Assert.AreEqual(AllOrders.Count, 2);
+        }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            TestItem.ItemName = "Clipper";
+            TestItem.OrderId = 1;
+            TestItem.CustomerId = 1;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Quantity = 12;
+            TestItem.Price = 3.95;
+            TestItem.Active = true;
+            //set ThisAddress to the test data
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderId = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
     }
 }

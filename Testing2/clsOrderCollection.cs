@@ -4,9 +4,13 @@ using System.Collections.Generic;
 
 namespace TestingOrderCollection
 {
-    
+
     public class clsOrderCollection
     {
+        //private data member for the list and thisorder
+        List<clsOrder> mOrderList = new List<clsOrder>();
+        clsOrder mThisOrder = new clsOrder();
+        
         /*
         //creating the cosntructor
         public clsOrderCollection()
@@ -48,7 +52,7 @@ namespace TestingOrderCollection
             select * from tblOrder
         RETURN 0
         */
-        public clsOrderCollection() 
+        public clsOrderCollection()
         {
             Int32 Index = 0;
             Int32 RecordCount = 0;
@@ -70,8 +74,7 @@ namespace TestingOrderCollection
             }
         }
 
-        //private data member for the list
-        List<clsOrder> mOrderList = new List<clsOrder>();
+        
 
         public List<clsOrder> OrderList
         {
@@ -97,17 +100,63 @@ namespace TestingOrderCollection
             }
         }
 
-        private clsOrder mThisOrder;
-        public clsOrder ThisOrder 
-        { 
-            get 
+        public clsOrder ThisOrder
+        {
+            get
             {
                 return mThisOrder;
-            } 
-            set 
+            }
+            set
             {
                 mThisOrder = value;
-            } 
+            }
         }
+
+        public int addOrder()
+        {
+            return 1;
+        }
+
+        public void deleteOrder()
+        {
+            //needs creating
+        }
+
+        public void reportByItemName(string itemName)
+        {
+            //needs completing
+        }
+
+        public void updateOrders()
+        {
+            //needs completing
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemName", mThisOrder.ItemName);
+            mThisOrder.OrderId = 123;
+            return mThisOrder.OrderId;
+        }
+
+        /* SQL code for adding a new record to the SQL table.
+         * As mentioned at the time of coding the database is inaccessable, so the code is here for easy implementation when accessable.
+        CREATE PROCEDURE sproc_tblOrder_Insert
+        --create parameters for the stored procedure
+            @ItemName varchar(50),
+            @Quantity int,
+            @Price double,
+            @Date date,
+            @CustomerId int
+            @Active bit
+
+            AS
+            --inserts into a new record
+            INSERT TO tblOrder (ItemName, Quantity, Price, DateAdded, CustomerId, Active)
+            values (@ItemName, @Quantity, @Price, @Date, @CustomerId, @Active)
+
+            return @@Identity
+         */
     }
 }
