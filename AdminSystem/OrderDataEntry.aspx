@@ -11,7 +11,7 @@
     <form id="OrderId" runat="server">
         <asp:Label ID="lblOrderId" runat="server" Text="Order ID" width="222px"></asp:Label>
         <asp:TextBox ID="txtOrderId" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+        <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click" Text="Find" />
         <p>
             <asp:Label ID="lblDate" runat="server" Text="Order Date" width="222px"></asp:Label>
             <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>

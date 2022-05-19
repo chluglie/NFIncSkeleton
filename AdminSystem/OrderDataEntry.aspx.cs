@@ -6,8 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
 
+
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+            /*      Currently commented out as unable to access databae and is therefore creating errors.
     Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,17 +37,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtCustomerId.Text = OrderBook.ThisOrder.CustomerId.ToString();
         chkActive.Checked = OrderBook.ThisOrder.Active;
     }
-
+                */
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-        //capture the item name
-        AnOrder.ItemName = txtItemName.Text;
-        //store the item name in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the viewver page
-        Response.Redirect("OrderViewer.aspx");
+        //capture the values
+        string ItemName = txtItemName.Text;
+        string DateAdded = txtDate.Text;
+        long Quantity = long.Parse(txtQuantity.Text);
+        double Price = double.Parse(txtPrice.Text);
+        long CustomerId = long.Parse(txtCustomerId.Text);
+        string Error = "";
+        //validate the data
+        Error = AnOrder.Valid(ItemName, DateAdded, Quantity, Price, CustomerId);
+        if (Error == "")
+        {
+            //capture the values
+            AnOrder.ItemName = ItemName;
+            AnOrder.DateAdded = DateTime.Parse(DateAdded);
+            AnOrder.Quantity = (int)Quantity;
+            AnOrder.Price = Price;
+            AnOrder.CustomerId = (int)CustomerId;
+            AnOrder.ItemName = ItemName;
+            //store the item name in the session object
+            Session["AnOrder"] = AnOrder;
+            //navigate to the viewver page
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
