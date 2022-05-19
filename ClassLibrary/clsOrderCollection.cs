@@ -19,11 +19,18 @@ RETURN 0
         */
         public clsOrderCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblOrder_SelectAll");
+            PopulateArray(DB);
+            
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount = 0;
             RecordCount = DB.Count;
+            mOrderList = new List<clsOrder>();
             while (Index < RecordCount)
             {
                 clsOrder AnOrder = new clsOrder();
@@ -89,12 +96,10 @@ RETURN 0
 
         public void reportByItemName(string itemName)
         {
-            //needs completing
-        }
-
-        public void updateOrders()
-        {
-            //needs completing
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemName", itemName);
+            DB.Execute("sproc_tblOrder_filterByItemName");
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -163,16 +168,6 @@ CREATE PROCEDURE sproc_tblOrder_Update
         Active=@Active,
 
     where OrderId=@OrderId
-         */
-
-        public void Delete()
-        {
-
-        }
-
-        /* SQL Code for Delete
-         * 
-        
          */
     }
 }

@@ -139,5 +139,58 @@ namespace TestingOrderCollection
             AllOrders.ThisOrder.Find(PrimaryKey);
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
+
+        [TestMethod]
+        public void ReporttByItemNameOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.reportByItemName("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByItemNameNoneFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.reportByItemName("lighter");
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByItemNameTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            Boolean OK = true;
+            //apply a lighter that doesnt exist
+            FilteredOrders.reportByItemName("Electric Lighter");
+            if (FilteredOrders.Count == 2)
+            {
+                //checks that the first record is id 2
+                if (FilteredOrders.OrderList[0].OrderId != 2)
+                {
+                    OK = false;
+                }
+                //checks that the first record is id 3
+                if (FilteredOrders.OrderList[0].OrderId != 3)
+                {
+                    OK = false;
+                }
+            } 
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        
+
+        /* SQL code for reporting by Item Name
+         * 
+CREATE PROCEDURE [dbo].sproc_tblOrder_FilterByItemName
+    @ItemName varchar (50)
+AS
+    select * from tblOrder where ItemName like @ItemName+'%';   
+         */
     }
 }

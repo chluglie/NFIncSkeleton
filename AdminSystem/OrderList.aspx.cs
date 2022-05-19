@@ -17,7 +17,7 @@ public partial class _1_List : System.Web.UI.Page
         clsOrderCollection Orders = new clsOrderCollection(); //not accessing?
         lstOrderList.DataSource = Orders.OrderList;
         lstOrderList.DataValueField = "OrderId";
-        lstOrderList.DataValueField = "ItemName";
+        lstOrderList.DataTextField = "ItemName";
         lstOrderList.DataBind();
     }
 
@@ -60,4 +60,14 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.reportByItemName(txtFilter.Text);
+        lstOrderList.DataSource = Orders.OrderList;
+        lstOrderList.DataValueField = "OrderId";
+        lstOrderList.DataTextField = "ItemName";
+        lstOrderList.DataBind();
+    }
 }
