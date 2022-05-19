@@ -146,21 +146,68 @@ namespace TestingOrderCollection
 
         /* SQL code for adding a new record to the SQL table.
          * As mentioned at the time of coding the database is inaccessable, so the code is here for easy implementation when accessable.
-        CREATE PROCEDURE sproc_tblOrder_Insert
-        --create parameters for the stored procedure
-            @ItemName varchar(50),
-            @Quantity int,
-            @Price double,
-            @Date date,
-            @CustomerId int
-            @Active bit
+CREATE PROCEDURE sproc_tblOrder_Insert
+--create parameters for the stored procedure
+    @ItemName varchar(50),
+    @Quantity int,
+    @Price double,
+    @Date date,
+    @CustomerId int
+    @Active bit
 
-            AS
-            --inserts into a new record
-            INSERT TO tblOrder (ItemName, Quantity, Price, DateAdded, CustomerId, Active)
-            values (@ItemName, @Quantity, @Price, @Date, @CustomerId, @Active)
+    AS
+    --inserts into a new record
+    INSERT TO tblOrder (ItemName, Quantity, Price, DateAdded, CustomerId, Active)
+    values (@ItemName, @Quantity, @Price, @Date, @CustomerId, @Active)
 
-            return @@Identity
+    return @@Identity
+         */
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemName", mThisOrder.ItemName);
+            DB.AddParameter("@Quantity", mThisOrder.Quantity);
+            DB.AddParameter("@Price", mThisOrder.Price);
+            DB.AddParameter("@Date", mThisOrder.DateAdded);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@Active", mThisOrder.Active);
+            DB.Execute("sproc_tblOrder_Update");
+        }
+
+        /* SQL Code for Update
+         * 
+CREATE PROCEDURE sproc_tblOrder_Update
+--create parameters for the stored procedure
+    @OrderId int,
+    @ItemName varchar(50),
+    @Quantity int,
+    @Price double,
+    @Date date,
+    @CustomerId int,
+    @Active bit
+
+    AS
+    --update the record as the specified by @OrderId value
+    update tblOrder
+    set ItemName=@ItemName,
+        Quantity=@Quantity,
+        Price=@Price,
+        DateAdded=@Date,
+        CustomerId=@CustomerId,
+        Active=@Active,
+
+    where OrderId=@OrderId
+         */
+
+        public void Delete()
+        {
+
+        }
+
+        /* SQL Code for Delete
+         * 
+        
          */
     }
 }

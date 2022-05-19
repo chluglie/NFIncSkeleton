@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.SqlClient;
-using System.Data.OleDb;
 using System.Data;
+using System.Data.SqlClient;
 //using ClassControlLib; -> class lib 
 
 ///This class uses the ado.net sql classes to provide a connection to an Azure sql server database.
