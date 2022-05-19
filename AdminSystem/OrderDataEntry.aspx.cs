@@ -5,15 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
+using TestingOrderCollection;
 
-
-public partial class _1_DataEntry : System.Web.UI.Page
+public partial class _1_DataEntry: System.Web.UI.Page
 {
-            /*      Currently commented out as unable to access databae and is therefore creating errors.
     Int32 OrderId;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        OrderId = Convert.ToInt32(Session["OrderId"]);
+        OrderId = Convert.ToInt32(Session["OrderId"]); //why is this not able to access?
         if (IsPostBack == false)
         {
             if (OrderId != -1)
@@ -23,7 +23,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    private void DisplayOrders()
+    void DisplayOrders()
     {
         clsOrderCollection OrderBook = new clsOrderCollection();
 
@@ -37,7 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtCustomerId.Text = OrderBook.ThisOrder.CustomerId.ToString();
         chkActive.Checked = OrderBook.ThisOrder.Active;
     }
-                */
+                
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
@@ -54,17 +54,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture the values
+            AnOrder.OrderId = OrderId;
             AnOrder.ItemName = ItemName;
             AnOrder.DateAdded = DateTime.Parse(DateAdded);
             AnOrder.Quantity = (int)Quantity;
             AnOrder.Price = Price;
             AnOrder.CustomerId = (int)CustomerId;
-            AnOrder.ItemName = ItemName;
+            AnOrder.Active = chkActive.Checked;
             //store the item name in the session object
-            Session["AnOrder"] = AnOrder;
-            //navigate to the viewver page
+            clsOrderCollection OrderList = new clsOrderCollection();
+            if (OrderId == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(OrderId);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
+            //navigate to the list page
             Response.Redirect("OrderViewer.aspx");
         }
+        
         else
         {
             lblError.Text = Error;

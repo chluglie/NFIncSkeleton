@@ -10,47 +10,12 @@ namespace TestingOrderCollection
         //private data member for the list and thisorder
         List<clsOrder> mOrderList = new List<clsOrder>();
         clsOrder mThisOrder = new clsOrder();
-
         /*
-        //creating the cosntructor
-        public clsOrderCollection()
-        {
-            //This is the first version, however the updated version using the data base is commented out beneath.
-            //This is due to not having access to the time of the database at the time of coding. However, the code as been built so it
-            //can easily be swapped out and used when connected to the database.
-
-            //creating the items of test data
-            clsOrder TestItem = new clsOrder();
-            //set its properties
-            TestItem.ItemName = "Clipper";
-            TestItem.OrderId = 1;
-            TestItem.CustomerId = 1;
-            TestItem.DateAdded = DateTime.Now.Date;
-            TestItem.Quantity = 12;
-            TestItem.Price = 3.95;
-            TestItem.Active = true;
-            //adds the item to the test list
-            mOrderList.Add(TestItem);
-            //reintialise the object for some new data
-            TestItem = new clsOrder();
-            TestItem.ItemName = "Zibbo";
-            TestItem.OrderId = 2;
-            TestItem.CustomerId = 2;
-            TestItem.DateAdded = DateTime.Now.Date;
-            TestItem.Quantity = 12;
-            TestItem.Price = 3.95;
-            TestItem.Active = true;
-            //add the item to the test list
-            mOrderList.Add(TestItem);
-        }
-        */
-
-        /*
-        CREATE PROCEDURE sproc_tblOrder_SelectAll
-        AS
-        --select all records from the table
-            select * from tblOrder
-        RETURN 0
+CREATE PROCEDURE sproc_tblOrder_SelectAll
+AS
+--select all records from the table
+    select * from tblOrder
+RETURN 0
         */
         public clsOrderCollection()
         {
