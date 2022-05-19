@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace TestingOrderCollection
 {
+    
     public class clsOrderCollection
     {
+        /*
         //creating the cosntructor
         public clsOrderCollection()
         {
@@ -27,7 +29,7 @@ namespace TestingOrderCollection
             mOrderList.Add(TestItem);
             //reintialise the object for some new data
             TestItem = new clsOrder();
-            TestItem.ItemName = "ZObbo";
+            TestItem.ItemName = "Zibbo";
             TestItem.OrderId = 2;
             TestItem.CustomerId = 2;
             TestItem.DateAdded = DateTime.Now.Date;
@@ -36,35 +38,37 @@ namespace TestingOrderCollection
             TestItem.Active = true;
             //add the item to the test list
             mOrderList.Add(TestItem);
-
-            /*
-            public clsOrderCollection() 
-            {
-                Int32 Index = 0;
-                Int32 RecordCount = 0;
-                clsDataConnection DB = new clsDatConnection();
-                DB.execute("sproc_tblOrder_SelectAll");
-                RecordCount = DB.Count;
-                while (Index < RecordCount)
-                {
-                    clsOrder AnOrder = new clsOrder();
-                    AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]); ;
-                    AnOrder.mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
-                    AnOrder.mItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
-                    AnOrder.mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
-                    AnOrder.mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
-                    AnOrder.mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
-                    AnOrder.mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
-                    mOrderList.Add(AnOrder);
-                    Index++;
-                }
-            }
-             */
         }
+        */
 
-
-
-
+        /*
+        CREATE PROCEDURE sproc_tblOrder_SelectAll
+        AS
+        --select all records from the table
+            select * from tblOrder
+        RETURN 0
+        */
+        public clsOrderCollection() 
+        {
+            Int32 Index = 0;
+            Int32 RecordCount = 0;
+            clsDataConnection DB = new clsDatConnection();
+            DB.execute("sproc_tblOrder_SelectAll");
+            RecordCount = DB.Count;
+            while (Index < RecordCount)
+            {
+                clsOrder AnOrder = new clsOrder();
+                AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]); ;
+                AnOrder.CustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                AnOrder.ItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
+                AnOrder.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                AnOrder.Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                AnOrder.Price = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                AnOrder.Active = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mOrderList.Add(AnOrder);
+                Index++;
+            }
+        }
 
         //private data member for the list
         List<clsOrder> mOrderList = new List<clsOrder>();
