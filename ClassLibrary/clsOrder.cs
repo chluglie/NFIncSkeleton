@@ -123,6 +123,87 @@ namespace ClassLibrary
             return true;
         }
 
+        public string Valid(
+            string itemName, 
+            string dateAdded, 
+            long quantity, 
+            double price, 
+            long customerId)
+        {
+            String Error = "";
+            DateTime DateTemp;
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+            //customerid
+            if (customerId == null)
+            {
+                Error = Error + "The CustomerId is invalid: ";
+                throw new ArgumentNullException(nameof(customerId));
+            }
+            if (customerId > int.MaxValue) 
+            {
+                Error = Error + "The CustomerId must not be greater than 2147483647: ";
+            }
+            if (customerId < 0)
+            {
+                Error = Error + "The CustomerId must not be less than 0: ";
+            }
+
+            //itemname
+            if(itemName.Length == 0 || itemName.Length == null)
+            {
+                Error = Error + "The item name is invalid: ";
+                throw new ArgumentNullException(nameof(customerId));
+            }
+            if (itemName.Length > 50)
+            {
+                Error = Error + "The item name must not be greater than 50 characters: ";
+            }
+
+            //date
+            DateTemp = Convert.ToDateTime(dateAdded);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future : ";
+            }
+
+
+            //quantity
+            if (quantity == null)
+            {
+                Error = Error + "The quantity is invalid: ";
+                throw new ArgumentNullException(nameof(quantity));
+            }
+            if (quantity > int.MaxValue)
+            {
+                Error = Error + "The quantity must not be greater than 2147483647: ";
+            }
+            if (quantity < 0)
+            {
+                Error = Error + "The quantity must not be less than 0: ";
+            }
+
+            //price
+            if (price == null)
+            {
+                Error = Error + "The price is invalid: ";
+                throw new ArgumentNullException(nameof(price));
+            }
+            if (price > int.MaxValue)
+            {
+                Error = Error + "The price must not be greater than 2147483647: ";
+            }
+            if (price < 0)
+            {
+                Error = Error + "The price must not be less than 0: ";
+            }
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
+            return Error;
+        }
+
         /*
         public bool Find(int OrderId)
         {
