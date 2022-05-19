@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ClassLibrary;
+using System;
 using System.Collections.Generic;
 
 namespace TestingOrderCollection
@@ -35,16 +35,6 @@ namespace TestingOrderCollection
             //assign data to property and test the values
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.OrderList, TestList);
-        }
-        
-        
-        [TestMethod]
-        public void CountOrderOK()  //This test is made redundant by the updated version of clsOrderCollection, inside clsOrderCollection.cs
-        {                           //When linked to the database this test should be removed as it will fail.
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            Int32 TestCount = 2; //quick fix just to make the test pass
-            AllOrders.Count = TestCount;
-            Assert.AreEqual(AllOrders.Count, TestCount);
         }
 
         [TestMethod]
@@ -87,10 +77,120 @@ namespace TestingOrderCollection
         }
 
         [TestMethod]
-        public void TwoRecordsPresent() //This test is made redundant by the updated version of clsOrderCollection, inside clsOrderCollection.cs
-        {                               //When linked to the database this test should be removed as it will fail.
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
             clsOrderCollection AllOrders = new clsOrderCollection();
-            Assert.AreEqual(AllOrders.Count, 2);
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            TestItem.ItemName = "Clipper";
+            TestItem.OrderId = 1;
+            TestItem.CustomerId = 1;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Quantity = 12;
+            TestItem.Price = 3.95;
+            TestItem.Active = true;
+            //set ThisAddress to the test data
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderId = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            TestItem.ItemName = "Clipper";
+            TestItem.OrderId = 1;
+            TestItem.CustomerId = 1;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Quantity = 12;
+            TestItem.Price = 3.95;
+            TestItem.Active = true;
+            //set ThisAddress to the test data
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //set the primary key of the test data
+            TestItem.OrderId = PrimaryKey;
+            //modify the test data
+            TestItem.ItemName = "Zibbo";
+            TestItem.OrderId = 3;
+            TestItem.CustomerId = 7;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Quantity = 4;
+            TestItem.Price = 7.69;
+            TestItem.Active = false;
+            //set the record based on the new test data and update the record
+            AllOrders.ThisOrder = TestItem;
+            AllOrders.Update();
+            //find the recond and test to see if order matches
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void ReporttByItemNameOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.reportByItemName("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByItemNameNoneFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.reportByItemName("lighter");
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByItemNameTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            Boolean OK = true;
+            //apply a lighter that doesnt exist
+            FilteredOrders.reportByItemName("Electric Lighter");
+            if (FilteredOrders.Count == 2)
+            {
+                //checks that the first record is id 2
+                if (FilteredOrders.OrderList[0].OrderId != 2)
+                {
+                    OK = false;
+                }
+                //checks that the first record is id 3
+                if (FilteredOrders.OrderList[0].OrderId != 3)
+                {
+                    OK = false;
+                }
+            } 
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        
+
+        /* SQL code for reporting by Item Name
+         * 
+CREATE PROCEDURE [dbo].sproc_tblOrder_FilterByItemName
+    @ItemName varchar (50)
+AS
+    select * from tblOrder where ItemName like @ItemName+'%';   
+         */
     }
 }

@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -9,9 +10,21 @@
 <body>
     This is the order list page
     <form id="form1" runat="server">
-        <div>
-        </div>
         <asp:ListBox ID="lstOrderList" runat="server" DataSourceID="lstOrderList" Height="284px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="412px"></asp:ListBox>
+        <p>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+        </p>
+        Enter an Item Name:
+        <asp:TextBox ID="txtFilter" runat="server"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
+        <asp:Button ID="btnClear" runat="server" Text="Clear" />
+        <br />
+        <br />
+        <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     </form>
 </body>
 </html>

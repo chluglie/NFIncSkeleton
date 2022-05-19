@@ -8,7 +8,7 @@ namespace TestingOrder
     public class tstOrder
     {
         //good test data
-           
+
         string ItemName = "Clipper";
         string DateAdded = DateTime.Now.Date.ToString();
         int Quantity = 12;
@@ -355,7 +355,7 @@ namespace TestingOrder
         }
 
         //Tests for ItemName 
-        
+
         [TestMethod]
         public void ItemNameMin()
         {
@@ -467,7 +467,7 @@ namespace TestingOrder
             string DateAdded = TestDate.ToString();
             Error = AnOrder.Valid(ItemName, DateAdded, Quantity, Price, CustomerId);
             Assert.AreEqual(Error, "");
-        } 
+        }
         [TestMethod]
         public void DateAddedMinPlusOne()
         {
@@ -492,7 +492,7 @@ namespace TestingOrder
             string DateAdded = TestDate.ToString();
             Error = AnOrder.Valid(ItemName, DateAdded, Quantity, Price, CustomerId);
             Assert.AreNotEqual(Error, "");
-        }  
+        }
 
         [TestMethod]
         public void DateAddedInvalidData()

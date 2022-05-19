@@ -37,8 +37,8 @@ namespace ClassLibrary
         //private data member for the orderid property
         private Int32 mOrderId;
         //OrderId public property
-        public int OrderId 
-        { 
+        public int OrderId
+        {
             get
             {
                 //this line of code sends data out of the property
@@ -112,10 +112,10 @@ namespace ClassLibrary
         }
 
         public string Valid(
-            string itemName, 
-            string dateAdded, 
-            long quantity, 
-            double price, 
+            string itemName,
+            string dateAdded,
+            long quantity,
+            double price,
             long customerId)
         {
             String Error = "";
@@ -127,7 +127,7 @@ namespace ClassLibrary
                 Error = Error + "The CustomerId is invalid: ";
                 throw new ArgumentNullException(nameof(customerId));
             }
-            if (customerId > int.MaxValue) 
+            if (customerId > int.MaxValue)
             {
                 Error = Error + "The CustomerId must not be greater than 2147483647: ";
             }
@@ -137,7 +137,7 @@ namespace ClassLibrary
             }
 
             //itemname
-            if(itemName.Length == 0 || itemName.Length == null)
+            if (itemName.Length == 0 || itemName.Length == null)
             {
                 Error = Error + "The item name is invalid: ";
                 throw new ArgumentNullException(nameof(customerId));
@@ -159,7 +159,7 @@ namespace ClassLibrary
                 {
                     Error = Error + "The date cannot be in the future : ";
                 }
-            } 
+            }
             catch
             {
                 Error = Error + "The date entered is invalid: ";
@@ -239,7 +239,7 @@ namespace ClassLibrary
             }
         }
 
-        
+
 
     }
 }
