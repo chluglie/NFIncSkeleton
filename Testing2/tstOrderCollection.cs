@@ -37,16 +37,6 @@ namespace TestingOrderCollection
             Assert.AreEqual(AllOrders.OrderList, TestList);
         }
 
-
-        [TestMethod]
-        public void CountOrderOK()  //This test is made redundant by the updated version of clsOrderCollection, inside clsOrderCollection.cs
-        {                           //When linked to the database this test should be removed as it will fail.
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            Int32 TestCount = 2; //quick fix just to make the test pass
-            AllOrders.Count = TestCount;
-            Assert.AreEqual(AllOrders.Count, TestCount);
-        }
-
         [TestMethod]
         public void ThisOrderOK()
         {
@@ -84,13 +74,6 @@ namespace TestingOrderCollection
             TestList.Add(TestItem);
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.Count, TestList.Count);
-        }
-
-        [TestMethod]
-        public void TwoRecordsPresent() //This test is made redundant by the updated version of clsOrderCollection, inside clsOrderCollection.cs
-        {                               //When linked to the database this test should be removed as it will fail.
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            Assert.AreEqual(AllOrders.Count, 2);
         }
 
         [TestMethod]

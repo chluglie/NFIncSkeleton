@@ -12,6 +12,9 @@
         <div>
         </div>
         <asp:ListBox ID="lstOrderList" runat="server" DataSourceID="lstOrderList" Height="284px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="412px"></asp:ListBox>
+        <p>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+        </p>
     </form>
 </body>
 </html>
