@@ -19,7 +19,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
     {
         clsOrderCollection OrderBook = new clsOrderCollection();
         OrderBook.ThisOrder.Find(OrderId);
-        OrderBook.Delete();
+        OrderBook.deleteOrder();
         Response.Redirect("OrderList.aspx");
 
     }
